@@ -1,0 +1,66 @@
+<?php
+use Zend\Filter\DateTimeFormatter;
+?>
+
+<pre><?php print_r($event)?></pre>
+<table style="text-align: left; width: 1071px; height: 33px;"
+ border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td><h1>Event: <?php echo $this->escapeHtml($event->getName()); ?></h1></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<table style="text-align: left;" border="1"
+ cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td>Ort:</td>
+      <td>PLZ:</td>
+      <td>Stra&szlig;e:</td>
+      <td>Hausnummer:</td>
+    </tr>
+    <tr>
+      <td><?php echo $this->escapeHtml($event->getOrt()); ?></td>
+      <td><?php echo $this->escapeHtml($event->getPostleitzahl()); ?></td>
+      <td><?php echo $this->escapeHtml($event->getStrasse()); ?></td>
+      <td><?php echo $this->escapeHtml($event->getHausnummer()); ?></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<table style="text-align: left; width: 100px;" border="1"
+ cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td>Datum:</td>
+      <td>Geb&uuml;hr:</td>
+    </tr>
+    <tr>
+      <td><?php echo $this->escapeHtml($event->getDatum()); ?></td>
+      <td><?php echo $this->escapeHtml($event->getAnmeldegebuehr()); ?></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<table style="text-align: left; width: 100px;" border="1"
+ cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td>Beschreibung:</td>
+    </tr>
+    <tr>
+      <td><?php echo $this->escapeHtml($event->getBeschreibung())? $this->escapeHtml($event->getBeschreibung()) : 'Keine Angaben'; ?></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<a
+			href="<?php
+    
+echo $this->url('veranstaltung', array(
+        'action' => 'show',
+        'id' => $verid
+    ));
+    ?>">Zur Veranstaltung</a>

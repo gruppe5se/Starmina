@@ -1,0 +1,36 @@
+<?php
+$title = 'Edit event';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+$form = $this->form;
+$url = $this->url('event', array(
+    'action' => 'edit',
+    'id' => $id
+));
+$form->setAttribute('action', $url);
+$form->get('submit')->setAttribute('value', 'Edit');
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+echo $this->formHidden($form->get('veranstaltungs_id'));
+echo $this->formRow($form->get('name'));
+echo $this->formRow($form->get('postleitzahl'));
+echo $this->formRow($form->get('ort'));
+echo $this->formRow($form->get('strasse'));
+echo $this->formRow($form->get('hausnummer'));
+echo $this->formRow($form->get('vorgaenger_id'));
+echo $this->formRow($form->get('anmeldegebuehr'));
+echo $this->formRow($form->get('datum'));
+echo $this->formRow($form->get('geschlecht'));
+echo $this->formRow($form->get('beschreibung'));
+echo $this->formRow($form->get('sportart'));
+?>
+<div>
+ <?php echo $this->formInput($form->get('submit')); ?>
+ </div>
+<?php
+echo $this->form()->closeTag($form);

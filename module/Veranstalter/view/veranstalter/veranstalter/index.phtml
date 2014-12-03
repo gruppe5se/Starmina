@@ -1,0 +1,64 @@
+<?php
+use Zend\Filter\DateTimeFormatter;
+$title = 'My veranstalter list';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+	<a
+		href="<?php
+
+echo $this->url('veranstalter', array(
+    'action' => 'add'
+));
+?>">Add new item</a>
+</p>
+
+
+<table class="table">
+	<tr>
+		<th>Name</th>
+		<th>Vorname</th>
+		<th>Email</th>
+		<th>Iban</th>
+		<th>Bic</th>
+		<th>Verifizierung</th>
+		<th>Firmenname</th>
+		<th>Strasse</th>
+		<th>Hausnummer</th>
+		<th>Postleitzahl</th>
+		<th>Ort</th>
+		<th>&nbsp;</th>
+		<th></th>
+	</tr>
+ <?php foreach ($veranstaltern as $veranstalter): ?>
+ <tr>
+		<td><a
+			href="<?php
+    
+echo $this->url('veranstalter', array(
+        'action' => 'edit',
+        'id' => $veranstalter->getId()
+    ));
+    ?>">
+             <?php echo $this->escapeHtml($veranstalter->getName()); ?></a></td>
+            <td><?php echo $this->escapeHtml($veranstalter->getVorname()); ?></td>
+    		<td><?php echo $this->escapeHtml($veranstalter->getEmail()); ?></td>
+    		<td><?php echo $this->escapeHtml($veranstalter->getIban()); ?></td>
+    		<td><?php echo $this->escapeHtml($veranstalter->getBic()); ?></td>
+    		<td><?php echo $this->escapeHtml($veranstalter->getVerifiziert()); ?></td>
+    		<td><?php echo $this->escapeHtml($veranstalter->getFirmenname()); ?></td>
+    		<td><?php echo $this->escapeHtml($veranstalter->getStrasse()); ?></td>
+    		<td><?php echo $this->escapeHtml($veranstalter->getHausnummer()); ?></td>
+    		<td><?php echo $this->escapeHtml($veranstalter->getPostleitzahl()); ?></td>
+    		<td><?php echo $this->escapeHtml($veranstalter->getOrt()); ?></td>
+            <td><a href="<?php  
+                 echo $this->url('veranstalter', array(
+                     'action' => 'delete',
+                        'id' => $veranstalter->getId()
+                   ));
+                 ?>">
+             Loeschen</a></td>
+			
+ <?php endforeach; ?>
+ </table>

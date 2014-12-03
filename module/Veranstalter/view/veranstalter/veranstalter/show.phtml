@@ -1,0 +1,59 @@
+<?php
+use Zend\Filter\DateTimeFormatter;
+$title = 'My veranstalter list';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+	<a
+		href="<?php
+
+echo $this->url('veranstalter', array(
+    'action' => 'add'
+));
+?>">Add new item</a>
+</p>
+
+
+<table class="table">
+	<tr>
+		<th>Name</th>
+		<th>Ort</th>
+		<th>PLZ</th>
+		<th>Strasse</th>
+		<th>Hausnummer</th>
+		<th>Datum</th>
+		<th>Meisterschaft</th>
+		<th>Geschlecht</th>
+		<th>Gebuehr</th>
+		<th>&nbsp;</th>
+	</tr>
+ <tr>
+		<td><a
+			href="<?php
+    
+echo $this->url('veranstalter', array(
+        'action' => 'edit',
+        'id' => $veranstalter->getId()
+    ));
+    ?>">
+             <?php echo $this->escapeHtml($veranstalter->getName()); ?></a></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td><a
+			href="<?php
+    
+echo $this->url('veranstalter', array(
+        'action' => 'delete',
+        'id' => $veranstalter->getId()
+    ));
+    ?>">Delete</a>
+		</td>
+	</tr>
+ </table>

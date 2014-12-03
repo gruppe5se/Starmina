@@ -1,0 +1,58 @@
+<?php
+use Zend\Filter\DateTimeFormatter;
+$title = $veranstaltung->getName();
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?> :</h1>
+<?php echo print((int)$veranstaltung->getId())?>
+	<a
+		href="<?php
+
+echo $this->url('event', array(
+    'action' => 'add', 'id' => $veranstaltung->getId()
+));
+?>">Neues Event hinzufuegen</a>
+<table class="table">
+<tr>
+<th>Name</th>
+<th>Ort</th>
+<th>PLZ</th>
+<th>Strasse</th>
+<th>Hausnummer</th>
+<th>Datum</th>
+<th>Meisterschaft</th>
+<th>Geschlecht</th>
+<th>Gebuehr</th>
+<th>&nbsp;</th>
+</tr>
+ <?php foreach ($events as $event): ?>
+ <tr>
+		<td><a
+			href="<?php
+    
+echo $this->url('event', array(
+        'action' => 'showdetail',
+        'id' => $event->getId()
+    ));
+    ?>">
+             <?php echo $this->escapeHtml($event->getName()); ?></a></td>
+		<td><?php echo $this->escapeHtml($event->getOrt()); ?></td>
+		<td><?php echo $this->escapeHtml($event->getPostleitzahl()); ?></td>
+		<td><?php echo $this->escapeHtml($event->getStrasse()); ?></td>
+		<td><?php echo $this->escapeHtml($event->getHausnummer()); ?></td>
+		<td><?php echo $this->escapeHtml(DateTime::createFromFormat('Y-m-d H:i:s', $event->getDatum())->format('Y-m-d H:i')); ?></td>
+		<td><?php echo $event->getMeisterschaftsbeschraenkung() ? $event->getMeisterschaftsbeschraenkung() : 'No'; ?></td>
+		<td><?php echo $event->getGeschlechtsbeschraenkung() != NULL ? $event->getGeschlechtsbeschraenkung() : 'No'; ?></td>
+		<td><?php echo $this->escapeHtml($event->getAnmeldegebuehr()); ?> &#8364;</td>
+			
+<pre><?php print_r($event)?></pre>
+ <?php endforeach; ?>
+ </table>
+ 
+ <a
+		href="<?php
+
+echo $this->url('veranstaltung', array(
+    'action' => 'show'
+));
+?>">Zur Uebersicht</a>
